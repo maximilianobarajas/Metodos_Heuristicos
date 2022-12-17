@@ -3,9 +3,11 @@ camel6 <- function(xx)
 {
   x1 <- xx[1]
   x2 <- xx[2]
+	
   term1 <- (4-2.1*x1^2+(x1^4)/3) * x1^2
   term2 <- x1*x2
   term3 <- (-4+4*x2^2) * x2^2
+	
   y <- term1 + term2 + term3
   return(y)
 }
@@ -15,7 +17,6 @@ solucion_vecina<-function(Sol_actual,desv){
    for (y in 1:length(Q)){
       Q[y]=rnorm(1,mean=Q[y],sd=desv)
    }
-   print(Q)
    return(Q)
 }
 #Funcion para solucion aleatoria inicial
@@ -35,6 +36,7 @@ recocido<-function(temp_inicial,temp_final,enfriamiento,iteraciones){
                 solucion_actual=sol
                 mejor_sol=sol
                 mejor_imagen=camel6(sol)
+
             }
             else{
                 #Criterio de metropolis
@@ -42,8 +44,7 @@ recocido<-function(temp_inicial,temp_final,enfriamiento,iteraciones){
                 r=runif(1)
                 if(r<exp(-delta/Temp)){
                     solucion_actual=sol
-                    mejor_sol=sol
-                    mejor_imagen=camel6(sol)
+            
                 }
             }
         }
@@ -51,5 +52,4 @@ recocido<-function(temp_inicial,temp_final,enfriamiento,iteraciones){
     }
     return(c(mejor_imagen,mejor_sol))
 }
-recocido(10000000,1,0.95,200)
-
+recocido(100000,1,0.95,200)
