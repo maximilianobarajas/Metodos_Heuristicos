@@ -1,3 +1,4 @@
+
 #Funcion objetivo
 camel6 <- function(xx)
 {
@@ -52,4 +53,7 @@ recocido<-function(temp_inicial,temp_final,enfriamiento,iteraciones){
     }
     return(c(mejor_imagen,mejor_sol))
 }
-recocido(100000,1,0.95,200)
+for(i in 1:30){
+  print(recocido(100000,1,0.95,200))
+}
+
