@@ -61,6 +61,7 @@ func tsp_recocido(matriz_distancias [][]int, Temp_Inicial float64, Temp_Final fl
     }
     return mejor_sol,mejor_costo
 }
+
 func main(){
   caso1 := [][]int{
    {9999, 3, 5, 48, 48, 8, 8, 5, 5, 3, 3, 0, 3, 5, 8, 8, 5},
@@ -80,6 +81,10 @@ func main(){
   {8, 8, 50, 6, 6, 0, 0, 8, 8, 8, 8, 8, 8, 50, 9999, 0, 8},
   {8, 8, 50, 6, 6, 0, 0, 8, 8, 8, 8, 8, 8, 50, 0, 9999, 8},
   {5, 5, 26, 12, 12, 8, 8, 0, 0, 5, 5, 5, 5, 26, 8, 8, 9999}}
-  
-  fmt.Println(tsp_recocido(caso1,100000,0.01,0.95,10))
+  for i := 0; i<100;i++ {
+  fmt.Println(tsp_recocido(caso1,100000,0.000001,0.72,1000))
+      
+  }
 }
+
+
