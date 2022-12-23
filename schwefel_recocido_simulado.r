@@ -51,10 +51,10 @@ recocido<-function(temp_inicial,temp_final,enfriamiento,iteraciones,dimension){
     }
     return(c(mejor_imagen,mejor_sol))
 }
-
+for(i in 1:30){
 h<-recocido(100000,0.1,.95,1000,10)
 print("La mejor imagen es: ")
-h[1]
+print(h[1])
 print("Los valores que generan dicha imagen son: ")
-h[2:10]
-
+print(h[2:10])
+}
