@@ -4,7 +4,7 @@ import ("fmt"
 "math/rand" 
 "time")
 
-func solucion_aleatoria (d int)[]int{
+func solucion_aleatoria(d int)[]int{
      rand.Seed(time.Now().UnixNano())
      var h[] int 
      i:=0
