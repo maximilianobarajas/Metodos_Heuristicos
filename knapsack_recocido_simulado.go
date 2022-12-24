@@ -3,7 +3,7 @@ import ("fmt"
 "math" 
 "math/rand" 
 "time")
-
+//Creamos una función que regresa una solución aleatoria inicial al problema
 func solucion_aleatoria(d int)[]int{
      rand.Seed(time.Now().UnixNano())
      var h[] int 
@@ -14,6 +14,7 @@ func solucion_aleatoria(d int)[]int{
 	 }
      return (h)
 }
+//Creamos nuestra función objetivo del problema
 func calcular_peso_y_valor(sol []int, pesos []int, valores []int)(int,int){
     peso:=0
     valor:=0
@@ -26,7 +27,7 @@ func calcular_peso_y_valor(sol []int, pesos []int, valores []int)(int,int){
     return peso,valor
     
 }
-
+//Creamos la función que definirá el vecindario de nuestra solución
 func solucion_vecina(sol []int)[]int{
     Q:=sol
     rand.Seed(time.Now().UnixNano())
@@ -40,21 +41,21 @@ func solucion_vecina(sol []int)[]int{
     }
     return Q
 }
-
-
+//Creamos la función de recocido simulado
 func knapsack_recocido(capacidad int,pesos []int,valores []int, Temp_Inicial float64, Temp_Final float64, enfriamiento float64, iteraciones int) ([]int,int){
     mejor_valor := 0
+    var sol []int
     solucion_actual:= solucion_aleatoria(len(pesos))
     Temp:=Temp_Inicial
-    mejor_sol:=solucion_actual
+    mejor_sol:=make([]int,len(pesos))
     for Temp>Temp_Final{
         i:=0
         for i< iteraciones{
-            sol:=solucion_vecina(solucion_actual)
+            sol=solucion_vecina(solucion_actual)
             peso,valor:=calcular_peso_y_valor(sol,pesos,valores)
             if peso<=capacidad && valor>mejor_valor {
-                solucion_actual=sol
-                mejor_sol=sol
+                copy(mejor_sol,sol)
+                copy(solucion_actual,sol)
                 mejor_valor=valor
             }else{
                 var delta float64 = float64(valor-mejor_valor)
@@ -69,9 +70,9 @@ func knapsack_recocido(capacidad int,pesos []int,valores []int, Temp_Inicial flo
     }
     return mejor_sol,mejor_valor
 }
-
 func main (){
     peso1:= []int{23, 31, 29, 44, 53, 38, 63, 85, 89, 82}
     valor1:= []int{92, 57, 49, 68, 60, 43, 67, 84, 87, 72}
-    fmt.Println(knapsack_recocido(165,peso1,valor1,1000,0.001,0.85,100))
+    h,v:=knapsack_recocido(165,peso1,valor1,1000,0.001,0.85,100)
+    fmt.Println(h,v)
 }
