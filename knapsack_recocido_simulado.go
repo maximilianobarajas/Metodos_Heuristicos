@@ -62,7 +62,7 @@ func knapsack_recocido(capacidad int,pesos []int,valores []int, Temp_Inicial flo
                 var delta float64 = float64(valor-mejor_valor)
                 r:=rand.Float64()
                 if(r<math.Exp(-delta/Temp)){
-                   solucion_actual=sol 
+                   copy(solucion_actual,sol) 
                 }
             }
             i++
