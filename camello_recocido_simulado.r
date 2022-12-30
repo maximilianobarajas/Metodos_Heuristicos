@@ -67,6 +67,15 @@ for(i in 1:30){
 }
 fin<-Sys.time()
 print(df)
-
+print("El mejor mínimo encontrado es:")
+print(min(df$y))
+print("El peor mínimo encontrado es:")
+print(max(df$y))
+print("El minimo promedio es:")
+print(mean(df$y))
+print("La desviación estándar de los mínimos es:")
+print(sd(df$y))
+print("La diferencia entre el promedio y el óptimo real:")
+print(mean(df$y)+1.0316)
 print(fin-inicio)
 boxplot(df$y)
