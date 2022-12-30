@@ -1,4 +1,3 @@
-
 #Funcion objetivo
 camel6 <- function(xx)
 {
@@ -53,7 +52,21 @@ recocido<-function(temp_inicial,temp_final,enfriamiento,iteraciones){
     }
     return(c(mejor_imagen,mejor_sol))
 }
-for(i in 1:30){
-  print(recocido(100000,1,0.95,200))
-}
 
+inicio<-Sys.time()
+
+columns = c("y","x1","x2","tiempo en segundos") 
+df = data.frame(matrix(nrow = 0, ncol = length(columns))) 
+colnames(df) = columns
+for(i in 1:30){
+  start.time <- Sys.time()
+  h<-recocido(100000,1,0.95,200)
+  end.time <- Sys.time()
+  tiempo<-end.time-start.time
+  df[nrow(df) + 1,] <- c(h,tiempo)
+}
+fin<-Sys.time()
+print(df)
+
+print(fin-inicio)
+boxplot(df$y)
