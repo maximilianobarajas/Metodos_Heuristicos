@@ -51,10 +51,29 @@ recocido<-function(temp_inicial,temp_final,enfriamiento,iteraciones,dimension){
     }
     return(c(mejor_imagen,mejor_sol))
 }
+
+inicio<-Sys.time()
+columns = c("y","x1","x2","x3","x4","x5","x6","x7","x8","x9","x10","tiempo en segundos") 
+df = data.frame(matrix(nrow = 0, ncol = length(columns))) 
+colnames(df) = columns
 for(i in 1:30){
-h<-recocido(10000,0.001,.95,100,10)
-print("La mejor imagen es: ")
-print(h[1])
-print("Los valores que generan dicha imagen son: ")
-print(h[2:10])
-}
+start.time <- Sys.time()
+h<-recocido(100000,0.1,.95,1000,10)
+end.time <- Sys.time()
+tiempo<-end.time-start.time
+df[nrow(df) + 1,] <- c(h,tiempo)
+  }
+fin<-Sys.time()
+print(df)
+boxplot(df$y)
+print("El mejor mínimo encontrado es:")
+print(min(df$y))
+print("El peor mínimo encontrado es:")
+print(max(df$y))
+print("El minimo promedio es:")
+print(mean(df$y))
+print("La desviación estándar de los mínimos es:")
+print(sd(df$y))
+print("La diferencia entre el promedio y el óptimo real:")
+print(mean(df$y))
+print(fin-inicio)
