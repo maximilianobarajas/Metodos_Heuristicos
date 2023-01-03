@@ -21,7 +21,7 @@ solucion_vecina<-function(Sol_actual,desv){
 }
 #Funcion para solucion aleatoria inicial
 solucion_aleatoria<-function(){
-    return(c(runif(n=1,-3,3),runif(n=1,-2,2)))
+    return(runif(n=2))
 }
 #Funcion de recocido
 recocido<-function(temp_inicial,temp_final,enfriamiento,iteraciones){
