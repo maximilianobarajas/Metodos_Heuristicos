@@ -19,7 +19,7 @@ solucion_vecina<-function(Sol_actual,desv){
 }
 #Funcion para solucion aleatoria inicial
 solucion_aleatoria<-function(d){
-   return(rnorm(d))
+   return(runif(d,min=-32.768,max=32.768))
 }
 
 #Funcion de recocido
